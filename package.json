@@ -1,0 +1,34 @@
+{
+  "name": "web-vitals-lab",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "fmt": "oxfmt",
+    "lint": "oxlint",
+    "check": "oxfmt && oxlint --fix",
+    "preview": "vite preview",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.2",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.3",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.8",
+    "oxfmt": "^0.59.0",
+    "oxlint": "^1.71.0",
+    "typescript": "~7.0.2",
+    "vite": "^8.1.1"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,mjs,cjs}": "pnpm run check"
+  }
+}
