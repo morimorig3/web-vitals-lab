@@ -1,32 +1,14 @@
-# React + TypeScript + Vite
+# Web Vitals LAB
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+コアウェブバイタルの指標（LCP/CLS/INP）の数値向上のための実験サイトです。
 
-Currently, two official plugins are available:
+「やってしまいがちな実装」をテーマにして良い実装／悪い実装を比較し、実際に数値を計測可能な状態で提供します。
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+# Public URL
 
-## React Compiler
+https://web-vitals-lab.morimorig3.workers.dev/
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# データ出典
 
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
-
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+本サイトの検索・フィルタ実験には、日本郵便株式会社が提供する郵便番号データ（KEN_ALL.CSV）を使用しています。  
+（出典: https://www.post.japanpost.jp/zipcode/dl/readme.html）
