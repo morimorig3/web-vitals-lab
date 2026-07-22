@@ -9,7 +9,7 @@ type ExperimentCardProps = {
 
 export function ExperimentCard({ experiment }: ExperimentCardProps) {
   if (experiment.inactive) {
-    const { id, metric } = experiment;
+    const { id, metric, title } = experiment;
 
     return (
       <article className="grid grid-cols-[160px_1fr] gap-6 border-b border-[oklch(0.9_0.004_90)] px-1 py-7 opacity-50">
@@ -33,19 +33,25 @@ export function ExperimentCard({ experiment }: ExperimentCardProps) {
           </div>
 
           <Heading level={3} tone="muted" className="m-0">
-            近日追加予定
+            {title ?? "近日追加予定"}
           </Heading>
+
+          {title && (
+            <MonoLabel tone="subtle" className="text-[12px]">
+              近日追加予定
+            </MonoLabel>
+          )}
         </div>
       </article>
     );
   }
 
-  const { id, metric, title, bad, good, diff } = experiment;
+  const { id, metric, title, thumb, bad, good, diff } = experiment;
 
   return (
     <article className="grid grid-cols-[160px_1fr] gap-6 border-b border-[oklch(0.9_0.004_90)] px-1 py-7">
-      <div className="flex h-[110px] w-40 items-center justify-center rounded-[6px] bg-[oklch(0.94_0.004_90)] text-[13px] text-[oklch(0.6_0.008_90)]">
-        計測画面
+      <div className="flex h-[110px] w-40 items-center justify-center overflow-hidden rounded-[6px] border border-[oklch(0.88_0.005_90)] bg-[oklch(0.94_0.004_90)] text-[13px] text-[oklch(0.6_0.008_90)]">
+        {thumb ? <img src={thumb} alt="" className="h-full w-full object-cover" /> : "計測画面"}
       </div>
 
       <div className="grid gap-3.5">
