@@ -27,7 +27,11 @@ const main = async () => {
     ],
   });
 
-  const entries = records.map(({ zipCode, pref, city, town, prefKana, cityKana, townKana }) => ({
+  // Cloudflare Workers の静的アセットは1ファイル25MiBまで。
+  // オブジェクト配列だとキー名が124,513行分繰り返されて28MBを超えるため、
+  // キーなしのタプル配列にして約7MBまで圧縮する。列の並びは下記の通り固定。
+  const columns = ["zipCode", "pref", "city", "town", "prefKana", "cityKana", "townKana"];
+  const entries = records.map(({ zipCode, pref, city, town, prefKana, cityKana, townKana }) => [
     zipCode,
     pref,
     city,
@@ -35,10 +39,10 @@ const main = async () => {
     prefKana,
     cityKana,
     townKana,
-  }));
+  ]);
 
   await mkdir(dirname(OUTPUT_PATH), { recursive: true });
-  await writeFile(OUTPUT_PATH, JSON.stringify(entries), "utf-8");
+  await writeFile(OUTPUT_PATH, JSON.stringify({ columns, entries }), "utf-8");
 
   console.log(`件数: ${entries.length}, JSONを保存しました: ${OUTPUT_PATH}`);
 };
