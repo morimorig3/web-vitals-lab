@@ -10,14 +10,15 @@ https://web-vitals-lab.morimorig3.workers.dev/
 
 # Developper
 
-## 1. 郵便局CSVのJSON変換
+## 1. 郵便番号データの生成
+
+`public/data/japanpost/utf_ken_all.json` は日本郵便が配布するZIPをダウンロードして生成する、git管理外のファイルです。`pnpm run dev` / `pnpm run build` の実行時に自動生成されます(既に生成済みならスキップ)。
+
+手動で再生成・強制再生成する場合:
 
 ```
-node scripts/japanpost_csv_to_json.js
+node scripts/japanpost_csv_to_json.js [--force]
 ```
-
-CSV保存先: `data/japanpost/data/japanpost/utf_ken_all.csv`
-保存先: `public/data/japanpost/utf_ken_all.json`
 
 # データ出典
 

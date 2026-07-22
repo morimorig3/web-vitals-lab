@@ -1,13 +1,33 @@
-import { readFile, mkdir, writeFile } from "fs/promises";
+import { existsSync } from "fs";
+import { mkdir, writeFile } from "fs/promises";
 import { dirname, resolve } from "path";
 import { parse } from "csv-parse/sync";
+import { unzipSync } from "fflate";
 
-const CSV_PATH = resolve(import.meta.dirname, "../data/japanpost/utf_ken_all.csv");
+const ZIP_URL =
+  "https://www.post.japanpost.jp/service/search/zipcode/download/utf/zip/utf_ken_all.zip";
 const OUTPUT_PATH = resolve(import.meta.dirname, "../public/data/japanpost/utf_ken_all.json");
 
 const main = async () => {
-  const data = await readFile(CSV_PATH, "utf-8");
-  const records = parse(data, {
+  if (existsSync(OUTPUT_PATH) && !process.argv.includes("--force")) {
+    console.log(`生成済みのためスキップ: ${OUTPUT_PATH} (再生成する場合は --force)`);
+    return;
+  }
+
+  console.log(`ダウンロード中: ${ZIP_URL}`);
+  const res = await fetch(ZIP_URL);
+  if (!res.ok) {
+    throw new Error(`ダウンロードに失敗しました: ${res.status} ${res.statusText}`);
+  }
+  const zip = unzipSync(new Uint8Array(await res.arrayBuffer()));
+
+  const csvFileName = Object.keys(zip).find((name) => name.toLowerCase().endsWith(".csv"));
+  if (!csvFileName) {
+    throw new Error("zip内にCSVファイルが見つかりませんでした");
+  }
+  const csvText = new TextDecoder("utf-8").decode(zip[csvFileName]);
+
+  const records = parse(csvText, {
     columns: [
       "localGovernmentCode", // 全国地方公共団体コード
       "oldZipCode", // （旧）郵便番号（5桁）
@@ -28,8 +48,8 @@ const main = async () => {
   });
 
   // Cloudflare Workers の静的アセットは1ファイル25MiBまで。
-  // オブジェクト配列だとキー名が124,513行分繰り返されて28MBを超えるため、
-  // キーなしのタプル配列にして約7MBまで圧縮する。列の並びは下記の通り固定。
+  // オブジェクト配列だとキー名が12万行分繰り返されて肥大化するため、
+  // キーなしのタプル配列にする。列の並びは下記 columns の順で固定。
   const columns = ["zipCode", "pref", "city", "town", "prefKana", "cityKana", "townKana"];
   const entries = records.map(({ zipCode, pref, city, town, prefKana, cityKana, townKana }) => [
     zipCode,

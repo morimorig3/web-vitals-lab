@@ -4,7 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "predev": "node scripts/japanpost_csv_to_json.js",
     "dev": "vite",
+    "prebuild": "node scripts/japanpost_csv_to_json.js",
     "build": "tsc -b && vite build",
     "fmt": "oxfmt",
     "lint": "oxlint",
@@ -24,6 +26,7 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.3",
     "csv-parse": "^7.0.1",
+    "fflate": "^0.8.3",
     "husky": "^9.1.7",
     "lint-staged": "^17.0.8",
     "oxfmt": "^0.59.0",

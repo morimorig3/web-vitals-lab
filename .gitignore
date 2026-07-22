@@ -24,3 +24,4 @@ dist-ssr
 *.sw?
 
 data/japanpost/
+public/data/japanpost/
