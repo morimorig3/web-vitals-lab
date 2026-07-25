@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Accordion } from "../../../components/Accordion";
 import { MonoLabel } from "../../../components/typography/MonoLabel";
 import { ExperimentLayout } from "../../ExperimentLayout";
 import { type RecordRow, type SortKey, useRecordSearch } from "../useRecordSearch";
@@ -53,7 +54,7 @@ export function BadPage() {
       badHref="/experiments/inp-01/bad/"
       goodHref="/experiments/inp-01/good/"
     >
-      <div className="mb-8">
+      <Accordion label="実験の説明">
         <Text tone="tertiary">3万件の郵便データをサンプルにINPを計測するbadパターン実装です。</Text>
         <Text tone="tertiary">
           INPはユーザーの操作により記録されるCore Web
@@ -63,7 +64,7 @@ export function BadPage() {
           本ページでは、ユーザーのテーブル並び替え操作でテーブル3万行の再レンダリングが発生することにより、INPに悪影響を与えています。
         </Text>
         <img src={inpImageUrl} alt="INP" className="my-4 w-40 shadow rounded" />
-      </div>
+      </Accordion>
       <div className="mb-5 flex flex-wrap items-center gap-3">
         <input
           type="text"
