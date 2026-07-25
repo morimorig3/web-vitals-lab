@@ -28,7 +28,7 @@ export function BadPage() {
     fetch(DATA_URL)
       .then((res) => res.json())
       .then((data: ZipCodeJson) => {
-        const rows = data.entries.map(([zipCode, pref, city]) => ({ zipCode, pref, city }));
+        const rows = data.entries.map(([zipCode, pref, city], id) => ({ id, zipCode, pref, city }));
         setRecords(rows);
       });
   }, []);
@@ -111,7 +111,7 @@ export function BadPage() {
           </thead>
           <tbody>
             {visibleRecords.map((r) => (
-              <tr key={`${r.zipCode}-${r.city}`} className="border-b border-[oklch(0.93_0.003_90)]">
+              <tr key={r.id} className="border-b border-[oklch(0.93_0.003_90)]">
                 <td className="px-3 py-1.5 font-mono text-[13px]">{r.zipCode}</td>
                 <td className="px-3 py-1.5 text-[13px]">{r.pref}</td>
                 <td className="px-3 py-1.5 text-[13px]">{r.city}</td>

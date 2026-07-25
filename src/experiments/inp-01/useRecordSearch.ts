@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 export type RecordRow = {
+  id: number;
   zipCode: string;
   pref: string;
   city: string;
