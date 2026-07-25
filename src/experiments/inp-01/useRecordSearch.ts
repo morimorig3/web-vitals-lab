@@ -7,7 +7,7 @@ export type RecordRow = {
   city: string;
 };
 
-export type SortKey = keyof RecordRow;
+export type SortKey = Exclude<keyof RecordRow, "id">;
 type SortDir = "asc" | "desc";
 
 // キーワード/都道府県/ソートの状態と、全件を同期でフィルタ+ソートするロジックをまとめたもの。
