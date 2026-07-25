@@ -36,7 +36,7 @@ export const EXPERIMENTS: Experiment[] = [
   {
     id: "INP-01",
     metric: "INP",
-    title: "入力イベントごとに1万件を同期フィルタ+全行再レンダリング",
+    title: "入力イベントごとに3万件を同期フィルタ+全行再レンダリング",
     thumb: "/thumbs/inp-01.svg",
     bad: "/experiments/inp-01/bad/",
     good: "/experiments/inp-01/good/",

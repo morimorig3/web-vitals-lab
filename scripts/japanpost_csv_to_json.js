@@ -7,6 +7,8 @@ import { unzipSync } from "fflate";
 const ZIP_URL =
   "https://www.post.japanpost.jp/service/search/zipcode/download/utf/zip/utf_ken_all.zip";
 const OUTPUT_PATH = resolve(import.meta.dirname, "../public/data/japanpost/utf_ken_all.json");
+// 全件だとファイルサイズ・描画コストが大きすぎるため、間引いて約4分の1に減らす
+const SAMPLE_STEP = 4;
 
 const main = async () => {
   if (existsSync(OUTPUT_PATH) && !process.argv.includes("--force")) {
@@ -51,15 +53,17 @@ const main = async () => {
   // オブジェクト配列だとキー名が12万行分繰り返されて肥大化するため、
   // キーなしのタプル配列にする。列の並びは下記 columns の順で固定。
   const columns = ["zipCode", "pref", "city", "town", "prefKana", "cityKana", "townKana"];
-  const entries = records.map(({ zipCode, pref, city, town, prefKana, cityKana, townKana }) => [
-    zipCode,
-    pref,
-    city,
-    town,
-    prefKana,
-    cityKana,
-    townKana,
-  ]);
+  const entries = records
+    .filter((_, i) => i % SAMPLE_STEP === 0)
+    .map(({ zipCode, pref, city, town, prefKana, cityKana, townKana }) => [
+      zipCode,
+      pref,
+      city,
+      town,
+      prefKana,
+      cityKana,
+      townKana,
+    ]);
 
   await mkdir(dirname(OUTPUT_PATH), { recursive: true });
   await writeFile(OUTPUT_PATH, JSON.stringify({ columns, entries }), "utf-8");

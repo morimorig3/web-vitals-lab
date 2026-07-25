@@ -1,11 +1,11 @@
-import { ExperimentStubPage } from "../../ExperimentStubPage";
+import { ExperimentLayout } from "../../ExperimentLayout";
 
 export function GoodPage() {
   return (
-    <ExperimentStubPage
+    <ExperimentLayout
       id="INP-01"
       metric="INP"
-      title="入力イベントごとに1万件を同期フィルタ+全行再レンダリング"
+      title="入力イベントごとに3万件を同期フィルタ+全行再レンダリング"
       badHref="/experiments/inp-01/bad/"
       goodHref="/experiments/inp-01/good/"
     />

@@ -1,25 +1,28 @@
+import type { ReactNode } from "react";
 import { MonoLabel } from "../components/typography/MonoLabel";
 import { Text } from "../components/typography/Text";
 import { METRIC_COLORS, type Metric } from "../data/experiments";
 
-type ExperimentStubPageProps = {
+type ExperimentLayoutProps = {
   id: string;
   metric: Metric;
   title: string;
   badHref: string;
   goodHref: string;
+  children?: ReactNode;
 };
 
-export function ExperimentStubPage({
+export function ExperimentLayout({
   id,
   metric,
   title,
   badHref,
   goodHref,
-}: ExperimentStubPageProps) {
+  children,
+}: ExperimentLayoutProps) {
   return (
     <div className="mx-auto flex min-h-screen max-w-[860px] flex-col px-8 pt-14 pb-16">
-      <header className="mb-14">
+      <header>
         <MonoLabel href="/" tone="muted" className="text-[13px]">
           ← Web Vitals LAB
         </MonoLabel>
@@ -50,7 +53,7 @@ export function ExperimentStubPage({
         </div>
       </header>
 
-      <main className="flex-1">{/* コンテンツはここに追加 */}</main>
+      <main className="flex-1 py-4">{children}</main>
 
       <footer className="mt-16 border-t border-[oklch(0.88_0.005_90)] pt-6">
         <Text tone="muted" leading={1.8} className="text-[13px]">
