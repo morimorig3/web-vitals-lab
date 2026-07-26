@@ -15,7 +15,7 @@ module.exports = {
     collect: {
       staticDistDir: "./dist",
       url: collectUrls(),
-      numberOfRuns: 3,
+      numberOfRuns: 1,
     },
     upload: {
       target: "filesystem",
