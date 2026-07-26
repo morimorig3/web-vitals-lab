@@ -21,35 +21,35 @@ export function ExperimentLayout({
   children,
 }: ExperimentLayoutProps) {
   return (
-    <div className="mx-auto flex min-h-screen max-w-[860px] flex-col px-8 pt-14 pb-16">
+    <div className="mx-auto flex min-h-screen max-w-[860px] flex-col p-8">
       <header>
         <MonoLabel href="/" tone="muted" className="text-[13px]">
           ← Web Vitals LAB
         </MonoLabel>
 
-        <div className="mt-7 flex flex-wrap items-center gap-3">
-          <MonoLabel tone="tertiary" className="text-[13px]">
-            {id}
-          </MonoLabel>
-          <MonoLabel
-            className="rounded-[3px] px-2 py-[3px] text-[11px] font-semibold tracking-[0.03em]"
-            style={{ color: "white", backgroundColor: METRIC_COLORS[metric] }}
-          >
-            {metric}
-          </MonoLabel>
-        </div>
+        <div className="mt-4 flex flex-col gap-2">
+          <div className="flex flex-wrap items-center gap-2">
+            <MonoLabel tone="tertiary" className="text-[13px]">
+              {id}
+            </MonoLabel>
+            <MonoLabel
+              className="rounded-[3px] px-2 py-[3px] text-[11px] font-semibold tracking-[0.03em]"
+              style={{ color: "white", backgroundColor: METRIC_COLORS[metric] }}
+            >
+              {metric}
+            </MonoLabel>
+          </div>
 
-        <h1 className="mt-4 mb-6 text-[28px] leading-[1.4] font-semibold tracking-[-0.01em]">
-          {title}
-        </h1>
+          <h1 className="text-[28px] leading-[1.4] font-semibold tracking-[-0.01em]">{title}</h1>
 
-        <div className="flex items-center gap-5 border-b border-[oklch(0.88_0.005_90)] pb-6">
-          <MonoLabel href={badHref} className="text-sm">
-            bad ↗
-          </MonoLabel>
-          <MonoLabel href={goodHref} className="text-sm">
-            good ↗
-          </MonoLabel>
+          <div className="flex items-center gap-5 border-b border-[oklch(0.88_0.005_90)] pb-4">
+            <MonoLabel href={badHref} className="text-sm">
+              bad ↗
+            </MonoLabel>
+            <MonoLabel href={goodHref} className="text-sm">
+              good ↗
+            </MonoLabel>
+          </div>
         </div>
       </header>
 

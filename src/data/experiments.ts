@@ -55,6 +55,9 @@ export const EXPERIMENTS: Experiment[] = [
     id: "CLS-01",
     metric: "CLS",
     title: "画像に width/height 未指定",
-    inactive: true,
+    thumb: "/thumbs/cls-01.svg",
+    bad: "/experiments/cls-01/bad/",
+    good: null,
+    diff: "計測中",
   },
 ];
