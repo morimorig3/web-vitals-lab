@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "packageManager": "pnpm@10.19.0",
   "scripts": {
     "predev": "node scripts/japanpost_csv_to_json.js",
     "dev": "vite",
@@ -13,7 +12,6 @@
     "lint": "oxlint",
     "check": "oxfmt && oxlint --fix",
     "preview": "vite preview",
-    "lhci": "lhci autorun",
     "prepare": "husky"
   },
   "dependencies": {
@@ -23,7 +21,6 @@
     "tailwindcss": "^4.3.2"
   },
   "devDependencies": {
-    "@lhci/cli": "^0.15.1",
     "@types/node": "^24.13.2",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
