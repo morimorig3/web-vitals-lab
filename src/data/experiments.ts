@@ -60,4 +60,13 @@ export const EXPERIMENTS: Experiment[] = [
     good: null,
     diff: "計測中",
   },
+  {
+    id: "CLS-02",
+    metric: "CLS",
+    title: "後から挿入されるお知らせでCLSが発生",
+    thumb: "/thumbs/cls-02.svg",
+    bad: "/experiments/cls-02/bad/",
+    good: null,
+    diff: "計測中",
+  },
 ];
