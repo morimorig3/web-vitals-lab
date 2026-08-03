@@ -52,6 +52,15 @@ export const EXPERIMENTS: Experiment[] = [
     diff: "計測中",
   },
   {
+    id: "LCP-02",
+    metric: "LCP",
+    title: "Webフォントのブロッキング読み込み",
+    thumb: "/thumbs/lcp-02.svg",
+    bad: "/experiments/lcp-02/bad/",
+    good: null,
+    diff: "計測中",
+  },
+  {
     id: "CLS-01",
     metric: "CLS",
     title: "画像に width/height 未指定",
