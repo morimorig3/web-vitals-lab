@@ -19,15 +19,6 @@ const FEATURES = [
   },
 ];
 
-const TESTIMONIALS = [
-  {
-    name: "S.K様",
-    body: "体重の増減がグラフで見えるので、ちょっとした変化にも気づけるようになりました。",
-  },
-  { name: "R.M様", body: "多頭飼いなので個体ごとに記録できるのが本当に助かっています。" },
-  { name: "Y.T様", body: "通院リマインドのおかげで予防接種を忘れなくなりました。" },
-];
-
 export function BadPage() {
   return (
     <ExperimentLayout
