@@ -55,13 +55,13 @@ export function BadPage() {
       goodHref="/experiments/inp-01/good/"
     >
       <Accordion label="実験の説明">
-        <Text tone="tertiary">3万件の郵便データをサンプルにINPを計測するbadパターン実装です。</Text>
-        <Text tone="tertiary">
-          INPはユーザーの操作により記録されるCore Web
-          Vitalsの指標です。ページを開き、ソート処理を発生させた後に計測を行うことでINPの数値を計測することができます。
+        <Text tone="tertiary" className="text-sm mb-2">
+          並べ替え機能を持つテーブルUIのbad実装パターンです。
+          <br />
+          サンプルとして、郵便番号データをテーブル表示し、都道府県順や郵便番号順に並べ替えることができます。
         </Text>
-        <Text tone="tertiary">
-          本ページでは、ユーザーのテーブル並び替え操作でテーブル3万行の再レンダリングが発生することにより、INPに悪影響を与えています。
+        <Text tone="tertiary" className="text-sm">
+          並び替え操作をするとテーブル3万行を再レンダリングするため、一定期間ユーザーの操作を受け付けない状態が続きます。
         </Text>
         <img src={inpImageUrl} alt="INP" className="my-4 w-40 shadow rounded" />
       </Accordion>

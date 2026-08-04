@@ -51,16 +51,18 @@ export function BadPage() {
       goodHref="/experiments/cls-02/good/"
     >
       <Accordion label="実験の説明">
-        <Text tone="tertiary">
-          架空のねこ写真共有サービス「ねこパレット」のトップページをサンプルにCLSを計測するbadパターン実装です。
+        <Text tone="tertiary" className="text-sm mb-2">
+          ページの上部にお知らせを後から挿入するページのbad実装パターンです。
         </Text>
-        <Text tone="tertiary">
-          CLSはページ読み込み中に発生する予期しないレイアウトのズレを数値化するCore Web
-          Vitalsの指標です。画像だけでなく、画面上部に後から挿入される要素があると発生しやすくなります。
+        <Text tone="tertiary" className="text-sm mb-2">
+          画面上部にお知らせを挿入しています。
+          <br />
+          挿入前はこの高さを一切確保していないため、取得できた瞬間にヒーロー画像やCTAボタンが押し下げられます。
+          <br />
+          このようなユーザーの予期せぬレイアウトのズレはUXを悪化させます。
         </Text>
-        <Text tone="tertiary">
-          本ページでは、画面上部に表示されるお知らせを、ヘッダー直下へ高さ0の状態から挿入しています。
-          挿入前はこの高さを一切確保していないため、取得できた瞬間にヒーローのCTAボタンや画像がまとめて大きく押し下げられます。
+        <Text tone="tertiary" className="text-sm">
+          ※デプロイ不要でお知らせを表示させるため、お知らせ用のJSONファイルをクラウドストレージ等に配置しておき、JSでfetchして表示するパターンを想定しています。
         </Text>
         <img src={clsImageUrl} alt="CLS" className="my-4 w-40 shadow rounded" />
       </Accordion>
@@ -135,12 +137,6 @@ export function BadPage() {
             今すぐはじめる
           </button>
         </section>
-      </div>
-
-      <div className="mt-4">
-        <Text className="text-[12px]" tone="subtle">
-          ※「重要なお知らせ」「通常のお知らせ」の見出し＋項目はページ読み込み時点のHTMLには含まれておらず、マウントの約1.5秒後にクライアント側でまとめて取得された場合のみ表示されます。取得前は高さ0のため、その間にユーザーがCTAボタンへ向けて操作を始めていても、取得完了時に見出し行を含めた分の高さがまとめて挿入され、表示位置が一気にずれます。
-        </Text>
       </div>
     </ExperimentLayout>
   );

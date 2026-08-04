@@ -38,17 +38,11 @@ export function BadPage() {
       goodHref="/experiments/lcp-01/good/"
     >
       <Accordion label="実験の説明">
-        <Text tone="tertiary">
-          架空の猫飼育記録サービスのランディングページをサンプルにLCPを計測するbadパターン実装です。
+        <Text tone="tertiary" className="text-sm mb-2">
+          ページのトップに大きなヒーロー画像を持つランディングページのbad実装パターンです。
         </Text>
-        <Text tone="tertiary">
-          LCPはページ内で最も大きな要素（多くの場合ヒーロー画像）が描画されるまでの時間を計測するCore
-          Web
-          Vitalsの指標です。表示速度に直結するため、ページを開いた直後の計測でLCPの数値を確認できます。
-        </Text>
-        <Text tone="tertiary">
-          本ページでは、6720×4480px・約8MBの無圧縮JPEGをそのままヒーロー画像として配信し、さらに本来最優先で読み込むべきLCP候補要素に
-          loading="lazy" を指定してしまうことで、LCPに悪影響を与えています。
+        <Text tone="tertiary" className="text-sm">
+          6720×4480px・約8MBの無圧縮JPEGをそのままヒーロー画像として指定し、さらにページのメインコンテンツ要素のヒーロー画像要素にloading="lazy"を指定してしまうことで、遅れてメインコンテンツが表示されるという問題が発生しています。
         </Text>
         <img src={lcpImageUrl} alt="LCP" className="my-4 w-40 shadow rounded" />
       </Accordion>
@@ -102,24 +96,7 @@ export function BadPage() {
           ))}
         </section>
 
-        <section className="bg-[oklch(0.97_0.003_90)] px-8 py-10">
-          <h3 className="mb-6 text-center text-[15px] font-semibold">お客様の声</h3>
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
-            {TESTIMONIALS.map((t) => (
-              <div
-                key={t.name}
-                className="rounded-[6px] border border-[oklch(0.9_0.004_90)] bg-white p-4"
-              >
-                <p className="mb-3 text-[13px] leading-[1.7] text-[oklch(0.4_0.006_90)]">
-                  {t.body}
-                </p>
-                <p className="text-[12px] font-semibold text-[oklch(0.55_0.01_90)]">{t.name}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="bg-white px-8 py-12 text-center">
+        <section className="bg-[oklch(0.97_0.003_90)] px-8 py-12 text-center">
           <h3 className="mb-3 text-[18px] font-semibold">今日から、猫の記録をはじめよう</h3>
           <p className="mb-6 text-[13px] text-[oklch(0.5_0.008_90)]">
             クレジットカード登録不要。いつでも解約できます。
@@ -131,13 +108,6 @@ export function BadPage() {
             無料アカウントを作成
           </button>
         </section>
-      </div>
-
-      <div className="mt-4">
-        <Text className="text-[12px]" tone="subtle">
-          ※ヒーロー画像は元データ（6720×4480px, 約8MB
-          のJPEG）をそのまま配信しています。圧縮・リサイズ・レスポンシブ対応は行っていません。
-        </Text>
       </div>
     </ExperimentLayout>
   );

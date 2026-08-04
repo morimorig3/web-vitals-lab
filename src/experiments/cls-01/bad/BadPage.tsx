@@ -21,16 +21,13 @@ export function BadPage() {
       goodHref="/experiments/cls-01/good/"
     >
       <Accordion label="実験の説明">
-        <Text tone="tertiary">
-          架空の猫用おもちゃショップの商品ページをサンプルにCLSを計測するbadパターン実装です。
+        <Text tone="tertiary" className="text-sm mb-2">
+          画面の上部に商品画像をタイル状に並べた商品ページのbad実装パターンです。
         </Text>
-        <Text tone="tertiary">
-          CLSはページ読み込み中に発生する予期しないレイアウトのズレを数値化するCore Web
-          Vitalsの指標です。画像や広告など、読み込みタイミングによってサイズが変わる要素があると発生しやすくなります。
-        </Text>
-        <Text tone="tertiary">
-          本ページでは、タイル状に並ぶ商品写真6枚に
-          width/height（またはaspect-ratio）を指定していないため、画像の読み込みが完了するたびにタイルの高さが変化し、その下にある「今すぐカートに入れる」ボタンの位置が大きく下にずれ続けます。
+        <Text tone="tertiary" className="text-sm">
+          タイル状に並ぶ商品写真6枚に画像の横幅/高さ（またはアスペクト比）を指定していないため、画像の読み込みが完了するたびにタイルの高さが変化し、その下にある「今すぐカートに入れる」ボタンの位置が大きく下にずれ続けます。
+          <br />
+          ユーザーにとってはボタンの位置がズレるという現象はUXが悪く、ボタンを押そうとしたときに誤って別のボタンを押してしまうなど、操作ミスの原因にもなります。
         </Text>
         <img src={clsImageUrl} alt="CLS" className="my-4 w-40 shadow rounded" />
       </Accordion>
@@ -58,13 +55,6 @@ export function BadPage() {
           </button>
           <p className="mt-3 text-[12px] text-[oklch(0.55_0.01_90)]">在庫残りわずか。送料無料。</p>
         </section>
-      </div>
-
-      <div className="mt-4">
-        <Text className="text-[12px]" tone="subtle">
-          ※商品写真6枚はいずれも width/height
-          を指定せず、最大4000px級のリサイズ前データをそのまま配信しています。読み込み順や回線状況によってタイルの高さが個別に変化し、そのたびに下部のボタンの位置がずれます。
-        </Text>
       </div>
     </ExperimentLayout>
   );

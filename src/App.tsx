@@ -17,7 +17,7 @@ function App() {
           Web Vitals LAB
         </Heading>
         <Text tone="secondary" leading={1.75} className="max-w-[620px] text-[17px]">
-          Webパフォーマンス改善の実験場。
+          Webパフォーマンス改善の実験室
         </Text>
       </header>
 

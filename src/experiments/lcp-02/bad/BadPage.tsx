@@ -4,15 +4,11 @@ import { Text } from "../../../components/typography/Text";
 import lcpImageUrl from "./lcp.png?url";
 
 const WEIGHT_SAMPLES = [
-  { weight: 100, label: "Thin 100", className: "font-thin" },
-  { weight: 200, label: "ExtraLight 200", className: "font-extralight" },
-  { weight: 300, label: "Light 300", className: "font-light" },
   { weight: 400, label: "Regular 400", className: "font-normal" },
   { weight: 500, label: "Medium 500", className: "font-medium" },
   { weight: 600, label: "SemiBold 600", className: "font-semibold" },
   { weight: 700, label: "Bold 700", className: "font-bold" },
   { weight: 800, label: "ExtraBold 800", className: "font-extrabold" },
-  { weight: 900, label: "Black 900", className: "font-black" },
 ];
 
 const SECTIONS = [
@@ -48,19 +44,18 @@ export function BadPage() {
       goodHref="/experiments/lcp-02/good/"
     >
       <Accordion label="実験の説明">
-        <Text tone="tertiary">
-          架空のねこブログ記事ページをサンプルにLCPを計測するbadパターン実装です。
+        <Text tone="tertiary" className="text-sm mb-2">
+          ページにWebフォントをふんだんに使った、ブログ記事ページのbad実装パターンです。
         </Text>
-        <Text tone="tertiary">
-          LCPはページ内で最も大きな要素が描画されるまでの時間を計測するCore Web
-          Vitalsの指標です。画像だけでなく、本文に使うWebフォントの読み込み方によっても大きく悪化します。
+        <Text tone="tertiary" className="text-sm mb-2">
+          Google Fontsから「Shippori Mincho
+          B1」の400〜800・全5ウェイトをまとめて同期読み込みしています。preconnectの指定も
+          font-displayの指定もないため、フォントの取得に時間がかかるほど記事タイトルや本文といったLCP候補要素の描画開始が遅れます。
+          <br />
+          ユーザーにとっては、記事の本文が表示されるまでの時間も長くなり、表示された後もフォントの切り替えが発生するため、読みやすさやUXの面で悪影響を与えます。
         </Text>
-        <Text tone="tertiary">
-          本ページでは、<span className="font-mono">{"<head>"}</span>で{" "}
-          <span className="font-mono">{'<link rel="stylesheet">'}</span>
-          によりGoogle Fontsから「Noto Sans
-          JP」の100〜900・全9ウェイトをまとめて同期読み込みしています。preconnectの指定も
-          font-displayの指定もないため、フォントの取得が完了するまで本文がずっと非表示（FOIT）になり、記事タイトルや本文といったLCP候補要素の描画が大きく遅延します。フォールバックフォントも指定していないため、読み込みが遅延している間の代替表示も用意されていません。
+        <Text tone="tertiary" className="text-sm">
+          ※Webフォントの読み込みはデスクトップ環境ではあまり問題にならず、モバイル環境のようなネットワーク帯域が狭い環境で顕著に影響が出ます。
         </Text>
         <img src={lcpImageUrl} alt="LCP" className="my-4 w-40 shadow rounded" />
       </Accordion>
@@ -75,7 +70,7 @@ export function BadPage() {
           </nav>
         </header>
 
-        <article className="px-8 py-10" style={{ fontFamily: '"Noto Sans JP"' }}>
+        <article className="px-8 py-10" style={{ fontFamily: '"Shippori Mincho B1"' }}>
           <p className="mb-2 text-[12px] font-light text-[oklch(0.55_0.01_90)]">
             2026/07/28 ・ くらし
           </p>
@@ -91,13 +86,15 @@ export function BadPage() {
               <h2 className="mb-2 text-[18px] font-bold">{section.title}</h2>
               <p className="text-[14px] leading-[1.9] font-normal text-[oklch(0.4_0.006_90)]">
                 {section.body}
+                {section.body}
+                {section.body}
               </p>
             </section>
           ))}
 
           <div className="rounded-[6px] border border-[oklch(0.9_0.004_90)] bg-[oklch(0.97_0.003_90)] p-5">
             <p className="mb-3 text-[12px] font-semibold text-[oklch(0.5_0.008_90)]">
-              使用フォント Noto Sans JP ウェイト見本
+              使用フォント Shippori Mincho B1 ウェイト見本
             </p>
             <div className="flex flex-col gap-1.5">
               {WEIGHT_SAMPLES.map((sample) => (
@@ -108,13 +105,6 @@ export function BadPage() {
             </div>
           </div>
         </article>
-      </div>
-
-      <div className="mt-4">
-        <Text className="text-[12px]" tone="subtle">
-          ※「Noto Sans JP」は100〜900の全9ウェイトをGoogle
-          Fontsからまとめて読み込んでいますが、実際に本文で使っているのは3〜4ウェイト程度です。preconnectがないため、CSS取得用のfonts.googleapis.comとフォント本体取得用のfonts.gstatic.comへの接続がそれぞれ後追いで発生し、遅延がさらに積み重なります。
-        </Text>
       </div>
     </ExperimentLayout>
   );

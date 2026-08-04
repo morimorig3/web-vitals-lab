@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { TONE_COLORS, type Tone } from "../../theme/tone";
 
-const DEFAULT_LEADING = 1.5;
+const DEFAULT_LEADING = 1.6;
 
 type TextProps = {
   tone?: Tone;
