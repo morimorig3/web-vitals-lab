@@ -75,7 +75,7 @@ export const EXPERIMENTS: Experiment[] = [
     title: "後から挿入されるお知らせでCLSが発生",
     thumb: "/thumbs/cls-02.svg",
     bad: "/experiments/cls-02/bad/",
-    good: null,
+    good: "/experiments/cls-02/good/",
     diff: "計測中",
   },
 ];
