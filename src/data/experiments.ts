@@ -66,7 +66,7 @@ export const EXPERIMENTS: Experiment[] = [
     title: "画像に width/height 未指定",
     thumb: "/thumbs/cls-01.svg",
     bad: "/experiments/cls-01/bad/",
-    good: null,
+    good: "/experiments/cls-01/good/",
     diff: "計測中",
   },
   {
