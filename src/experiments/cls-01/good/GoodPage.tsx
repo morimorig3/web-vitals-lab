@@ -7,7 +7,6 @@ import image03 from "../image-03.jpg?url";
 import image04 from "../image-04.jpg?url";
 import image05 from "../image-05.jpg?url";
 import image06 from "../image-06.jpg?url";
-import clsImageUrl from "../bad/cls.png?url";
 
 // 元画像はいずれも4000×2665px（横:縦 = 3:2）
 const GALLERY_IMAGES = [image01, image02, image03, image04, image05, image06];

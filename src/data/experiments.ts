@@ -48,7 +48,7 @@ export const EXPERIMENTS: Experiment[] = [
     title: "無圧縮ヒーロー画像 + 誤ったlazy指定",
     thumb: "/thumbs/lcp-01.svg",
     bad: "/experiments/lcp-01/bad/",
-    good: null,
+    good: "/experiments/lcp-01/good/",
     diff: "計測中",
   },
   {

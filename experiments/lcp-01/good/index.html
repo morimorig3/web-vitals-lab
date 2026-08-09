@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LCP-01 (good) | Web Vitals LAB</title>
+    <!-- LCP候補のヒーロー画像をReactのレンダリングを待たずにHTMLパース時点で取得開始させる -->
+    <link
+      rel="preload"
+      as="image"
+      href="/experiments/lcp-01/nekochan-1600x1067.webp"
+      fetchpriority="high"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/experiments/lcp-01/good/main.tsx"></script>
+  </body>
+</html>
