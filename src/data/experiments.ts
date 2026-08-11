@@ -57,7 +57,7 @@ export const EXPERIMENTS: Experiment[] = [
     title: "Webフォントのブロッキング読み込み",
     thumb: "/thumbs/lcp-02.svg",
     bad: "/experiments/lcp-02/bad/",
-    good: null,
+    good: "/experiments/lcp-02/good/",
     diff: "計測中",
   },
   {

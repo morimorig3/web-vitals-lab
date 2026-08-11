@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Accordion } from "../../../components/Accordion";
 import { ExperimentLayout } from "../../ExperimentLayout";
 import { Text } from "../../../components/typography/Text";
-import clsImageUrl from "../bad/cls.png?url";
 import heroCatUrl from "../hero-cat.jpg?url";
 
 const NOTICE_FETCH_DELAY_MS = 1500;

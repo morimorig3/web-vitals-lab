@@ -4,15 +4,17 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LCP-02 (bad) | Web Vitals LAB</title>
+    <title>LCP-02 (good) | Web Vitals LAB</title>
     <link rel="stylesheet" href="/src/index.css" />
     <!--
-      preconnect なし・font-display 指定なし・全9ウェイト一括読み込みという
-      「Google Fontsのコードスニペットをそのまま貼っただけ」を再現するbadパターン
+      preconnectで接続を先出し・記事本文で実際に使う3ウェイトのみ読み込み・
+      display=swapでフォント取得中もフォールバックフォントで即座にテキストを表示する
     -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;600;700;800"
+      href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;700&display=swap"
     />
   </head>
   <body>
@@ -65,22 +67,28 @@
           </summary>
           <div class="px-4 pb-4">
             <p class="mb-2 text-sm" style="line-height: 1.6; color: oklch(0.5 0.008 90)">
-              ページにWebフォントをふんだんに使った、ブログ記事ページのbad実装パターンです。
+              ページにWebフォントを使った、ブログ記事ページのgood実装パターンです。
             </p>
             <p class="mb-2 text-sm" style="line-height: 1.6; color: oklch(0.5 0.008 90)">
-              Google Fontsから「Shippori Mincho
-              B1」の400〜800・全5ウェイトをまとめて同期読み込みしています。preconnectの指定も
-              font-displayの指定もないため、フォントの取得に時間がかかるほど記事タイトルや本文といったLCP候補要素の描画開始が遅れます。<br />
-              ユーザーにとっては、記事の本文が表示されるまでの時間も長くなり、表示された後もフォントの切り替えが発生するため、読みやすさやUXの面で悪影響を与えます。
+              badパターンと比較して、フォント取得中も記事タイトルや本文がフォールバックフォントで即座に表示され、LCP候補要素の描画開始が遅れなくなっていることがわかります。
             </p>
+            <p class="mb-2 text-sm" style="line-height: 1.6; color: oklch(0.5 0.008 90)">
+              具体的には次の3点を変更しています。
+            </p>
+            <ul class="mb-2 list-disc pl-5 text-sm text-[oklch(0.5_0.008_90)]">
+              <li>
+                fonts.googleapis.com / fonts.gstatic.comへpreconnectを張り、接続確立を先出しする
+              </li>
+              <li>
+                記事本文で実際に使用する400・500・700の3ウェイトのみ読み込む（bad実装は本文で使っていない600・800も含めて5ウェイト一括読み込みしていた）
+              </li>
+              <li>
+                font-display=swapを指定し、フォント取得中もフォールバックフォントでテキストを即座に表示し、取得完了後に差し替える
+              </li>
+            </ul>
             <p class="text-sm" style="line-height: 1.6; color: oklch(0.5 0.008 90)">
-              ※Webフォントの読み込みはデスクトップ環境ではあまり問題にならず、モバイル環境のようなネットワーク帯域が狭い環境で顕著に影響が出ます。
+              ※フォント切り替え時に多少の見た目のガタつき（レイアウトシフト）は発生し得ますが、テキストが読めない時間をなくすことを優先しています。
             </p>
-            <img
-              src="/src/experiments/lcp-02/bad/lcp.png"
-              alt="LCP"
-              class="my-4 w-40 rounded shadow"
-            />
           </div>
         </details>
 
@@ -97,10 +105,10 @@
           </header>
 
           <article class="px-8 py-10" style="font-family: &quot;Shippori Mincho B1&quot;">
-            <p class="mb-2 text-[12px] font-light text-[oklch(0.55_0.01_90)]">
+            <p class="mb-2 text-[12px] font-normal text-[oklch(0.55_0.01_90)]">
               2026/07/28 ・ くらし
             </p>
-            <h1 class="mb-4 text-[26px] leading-[1.4] font-black">
+            <h1 class="mb-4 text-[26px] leading-[1.4] font-bold">
               はじめての多頭飼い、ねこ同士を仲良くさせる5つのコツ
             </h1>
             <p class="mb-8 text-[15px] leading-[1.9] font-medium text-[oklch(0.4_0.006_90)]">
@@ -155,9 +163,7 @@
               <div class="flex flex-col gap-1.5">
                 <p class="text-[15px] font-normal">Regular 400　ねこがすきです</p>
                 <p class="text-[15px] font-medium">Medium 500　ねこがすきです</p>
-                <p class="text-[15px] font-semibold">SemiBold 600　ねこがすきです</p>
                 <p class="text-[15px] font-bold">Bold 700　ねこがすきです</p>
-                <p class="text-[15px] font-extrabold">ExtraBold 800　ねこがすきです</p>
               </div>
             </div>
           </article>
