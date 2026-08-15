@@ -24,6 +24,7 @@ export function BadPage() {
     <ExperimentLayout
       id="LCP-01"
       metric="LCP"
+      variant="bad"
       title="無圧縮ヒーロー画像 + 誤ったlazy指定"
       badHref="/experiments/lcp-01/bad/"
       goodHref="/experiments/lcp-01/good/"

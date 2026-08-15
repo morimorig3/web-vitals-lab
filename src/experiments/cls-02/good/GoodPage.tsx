@@ -72,6 +72,7 @@ export function GoodPage() {
     <ExperimentLayout
       id="CLS-02"
       metric="CLS"
+      variant="good"
       title="後から挿入されるお知らせでCLSが発生"
       badHref="/experiments/cls-02/bad/"
       goodHref="/experiments/cls-02/good/"

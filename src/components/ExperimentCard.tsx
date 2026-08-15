@@ -1,7 +1,7 @@
-import { METRIC_COLORS, type Experiment, getDiffTone } from "../data/experiments";
+import { METRIC_COLORS, type Experiment } from "../data/experiments";
 import { Heading } from "./typography/Heading";
 import { MonoLabel } from "./typography/MonoLabel";
-import { Text } from "./typography/Text";
+import { VariantPillLink, VariantPillPending } from "./VariantPill";
 
 type ExperimentCardProps = {
   experiment: Experiment;
@@ -46,7 +46,7 @@ export function ExperimentCard({ experiment }: ExperimentCardProps) {
     );
   }
 
-  const { id, metric, title, thumb, bad, good, diff } = experiment;
+  const { id, metric, title, thumb, bad, good } = experiment;
 
   return (
     <article className="grid grid-cols-[160px_1fr] gap-6 border-b border-[oklch(0.9_0.004_90)] px-1 py-7">
@@ -71,30 +71,9 @@ export function ExperimentCard({ experiment }: ExperimentCardProps) {
           {title}
         </Heading>
 
-        <div className="flex flex-wrap items-center gap-6 text-sm">
-          <div className="flex items-center gap-3.5">
-            <MonoLabel href={bad} className="text-[13px]">
-              bad ↗
-            </MonoLabel>
-            {good ? (
-              <MonoLabel href={good} className="text-[13px]">
-                good ↗
-              </MonoLabel>
-            ) : (
-              <MonoLabel tone="faint" className="text-[13px]">
-                good — 準備中
-              </MonoLabel>
-            )}
-          </div>
-
-          <div className="flex items-baseline gap-1.5">
-            <Text as="span" tone="subtle" className="text-xs">
-              実測差分
-            </Text>
-            <MonoLabel tone={getDiffTone(diff)} className="font-semibold">
-              {diff}
-            </MonoLabel>
-          </div>
+        <div className="flex flex-wrap items-center gap-2.5">
+          <VariantPillLink href={bad} variant="bad" />
+          {good ? <VariantPillLink href={good} variant="good" /> : <VariantPillPending />}
         </div>
       </div>
     </article>

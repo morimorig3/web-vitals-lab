@@ -9,7 +9,7 @@ const experimentCount = EXPERIMENTS.filter((experiment) => !experiment.inactive)
 function App() {
   return (
     <div className="mx-auto max-w-[860px] px-8 pt-24 pb-16">
-      <header className="mb-16">
+      <header className="mb-12">
         <MonoLabel tone="muted" uppercase className="mb-4 block text-[13px] tracking-[0.06em]">
           Web Performance Lab
         </MonoLabel>
@@ -23,7 +23,7 @@ function App() {
 
       <main>
         <section aria-labelledby="experiments-heading">
-          <div className="mb-8 flex items-baseline justify-between border-b border-[oklch(0.88_0.005_90)] pb-4">
+          <div className="flex items-baseline justify-between border-b border-[oklch(0.88_0.005_90)] pb-4">
             <Heading level={2} id="experiments-heading" tone="secondary" className="m-0">
               実験一覧
             </Heading>

@@ -1,5 +1,3 @@
-import type { Tone } from "../theme/tone";
-
 export type Metric = "LCP" | "INP" | "CLS";
 
 export type Experiment =
@@ -10,7 +8,6 @@ export type Experiment =
       thumb?: string;
       bad: string;
       good: string | null;
-      diff: string;
       inactive?: false;
     }
   | {
@@ -26,12 +23,6 @@ export const METRIC_COLORS: Record<Metric, string> = {
   CLS: "oklch(0.55 0.13 250)",
 };
 
-const PENDING_DIFF_LABELS = new Set(["計測中", "未計測"]);
-
-export function getDiffTone(diff: string): Tone {
-  return PENDING_DIFF_LABELS.has(diff) ? "subtle" : "secondary";
-}
-
 export const EXPERIMENTS: Experiment[] = [
   {
     id: "INP-01",
@@ -39,8 +30,7 @@ export const EXPERIMENTS: Experiment[] = [
     title: "入力イベントごとに3万件を同期フィルタ+全行再レンダリング",
     thumb: "/thumbs/inp-01.svg",
     bad: "/experiments/inp-01/bad/",
-    good: null,
-    diff: "計測中",
+    good: "/experiments/inp-01/good/",
   },
   {
     id: "LCP-01",
@@ -49,7 +39,6 @@ export const EXPERIMENTS: Experiment[] = [
     thumb: "/thumbs/lcp-01.svg",
     bad: "/experiments/lcp-01/bad/",
     good: "/experiments/lcp-01/good/",
-    diff: "計測中",
   },
   {
     id: "LCP-02",
@@ -58,7 +47,6 @@ export const EXPERIMENTS: Experiment[] = [
     thumb: "/thumbs/lcp-02.svg",
     bad: "/experiments/lcp-02/bad/",
     good: "/experiments/lcp-02/good/",
-    diff: "計測中",
   },
   {
     id: "CLS-01",
@@ -67,7 +55,6 @@ export const EXPERIMENTS: Experiment[] = [
     thumb: "/thumbs/cls-01.svg",
     bad: "/experiments/cls-01/bad/",
     good: "/experiments/cls-01/good/",
-    diff: "計測中",
   },
   {
     id: "CLS-02",
@@ -76,6 +63,5 @@ export const EXPERIMENTS: Experiment[] = [
     thumb: "/thumbs/cls-02.svg",
     bad: "/experiments/cls-02/bad/",
     good: "/experiments/cls-02/good/",
-    diff: "計測中",
   },
 ];

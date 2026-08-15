@@ -18,6 +18,7 @@ export function GoodPage() {
     <ExperimentLayout
       id="CLS-01"
       metric="CLS"
+      variant="good"
       title="画像に width/height 未指定"
       badHref="/experiments/cls-01/bad/"
       goodHref="/experiments/cls-01/good/"

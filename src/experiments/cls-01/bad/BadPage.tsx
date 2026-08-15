@@ -16,6 +16,7 @@ export function BadPage() {
     <ExperimentLayout
       id="CLS-01"
       metric="CLS"
+      variant="bad"
       title="画像に width/height 未指定"
       badHref="/experiments/cls-01/bad/"
       goodHref="/experiments/cls-01/good/"

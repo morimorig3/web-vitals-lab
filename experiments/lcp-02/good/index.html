@@ -18,17 +18,26 @@
     />
   </head>
   <body>
-    <div class="mx-auto flex min-h-screen max-w-[860px] flex-col p-8">
-      <header>
-        <a
-          href="/"
-          class="font-mono text-[13px]"
-          style="line-height: 1.5; color: oklch(0.55 0.01 90)"
-          >← Web Vitals LAB</a
-        >
+    <div class="flex min-h-screen flex-col">
+      <div class="px-8 py-2.5 text-white" style="background-color: oklch(0.48 0.13 148)">
+        <div class="mx-auto flex max-w-[860px] flex-wrap items-center gap-3">
+          <span class="font-mono text-[13px] font-bold tracking-[0.08em]">GOOD 実装</span>
+          <span class="text-[12px] opacity-[0.85]"
+            >同じ機能をCore Web Vitalsが改善するように実装しています</span
+          >
+        </div>
+      </div>
 
-        <div class="mt-4 flex flex-col gap-2">
-          <div class="flex flex-wrap items-center gap-2">
+      <div class="mx-auto flex w-full max-w-[860px] flex-1 flex-col p-8">
+        <header class="mb-4">
+          <a
+            href="/"
+            class="font-mono text-[13px]"
+            style="line-height: 1.5; color: oklch(0.55 0.01 90)"
+            >← Web Vitals LAB</a
+          >
+
+          <div class="mt-7 flex flex-wrap items-center gap-3">
             <span class="font-mono text-[13px]" style="line-height: 1.5; color: oklch(0.5 0.008 90)"
               >LCP-02</span
             >
@@ -39,142 +48,164 @@
             >
           </div>
 
-          <h1 class="text-[28px] leading-[1.4] font-semibold tracking-[-0.01em]">
+          <h1 class="mt-4 mb-5 text-[28px] leading-[1.4] font-semibold tracking-[-0.01em]">
             Webフォントのブロッキング読み込み
           </h1>
 
-          <div class="flex items-center gap-5 border-b border-[oklch(0.88_0.005_90)] pb-4">
-            <a href="/experiments/lcp-02/bad/" class="font-mono text-sm" style="line-height: 1.5"
-              >bad ↗</a
-            >
-            <a href="/experiments/lcp-02/good/" class="font-mono text-sm" style="line-height: 1.5"
-              >good ↗</a
-            >
-          </div>
-        </div>
-      </header>
-
-      <main class="flex-1 py-4">
-        <details class="group mb-8 rounded-[6px] border border-[oklch(0.88_0.005_90)]">
-          <summary
-            class="flex cursor-pointer list-none items-center gap-2 px-4 py-3 text-[13px] font-semibold tracking-[0.01em] select-none [&::-webkit-details-marker]:hidden"
-          >
-            <span
-              class="inline-block text-[10px] text-[oklch(0.55_0.01_90)] transition-transform duration-150 group-open:rotate-90"
-              >▶</span
-            >
-            実験の説明
-          </summary>
-          <div class="px-4 pb-4">
-            <p class="mb-2 text-sm" style="line-height: 1.6; color: oklch(0.5 0.008 90)">
-              ページにWebフォントを使った、ブログ記事ページのgood実装パターンです。
-            </p>
-            <p class="mb-2 text-sm" style="line-height: 1.6; color: oklch(0.5 0.008 90)">
-              badパターンと比較して、フォント取得中も記事タイトルや本文がフォールバックフォントで即座に表示され、LCP候補要素の描画開始が遅れなくなっていることがわかります。
-            </p>
-            <p class="mb-2 text-sm" style="line-height: 1.6; color: oklch(0.5 0.008 90)">
-              具体的には次の3点を変更しています。
-            </p>
-            <ul class="mb-2 list-disc pl-5 text-sm text-[oklch(0.5_0.008_90)]">
-              <li>
-                fonts.googleapis.com / fonts.gstatic.comへpreconnectを張り、接続確立を先出しする
-              </li>
-              <li>
-                記事本文で実際に使用する400・500・700の3ウェイトのみ読み込む（bad実装は本文で使っていない600・800も含めて5ウェイト一括読み込みしていた）
-              </li>
-              <li>
-                font-display=swapを指定し、フォント取得中もフォールバックフォントでテキストを即座に表示し、取得完了後に差し替える
-              </li>
-            </ul>
-            <p class="text-sm" style="line-height: 1.6; color: oklch(0.5 0.008 90)">
-              ※フォント切り替え時に多少の見た目のガタつき（レイアウトシフト）は発生し得ますが、テキストが読めない時間をなくすことを優先しています。
-            </p>
-          </div>
-        </details>
-
-        <div class="overflow-hidden rounded-[8px] border border-[oklch(0.88_0.005_90)] bg-white">
-          <header
-            class="flex items-center justify-between border-b border-[oklch(0.88_0.005_90)] px-6 py-4"
-          >
-            <span class="text-[15px] font-bold">🐾 ねこ日和</span>
-            <nav class="flex gap-4 text-[12px] text-[oklch(0.55_0.01_90)]">
-              <span>くらし</span>
-              <span>健康</span>
-              <span>グッズ</span>
-            </nav>
-          </header>
-
-          <article class="px-8 py-10" style="font-family: &quot;Shippori Mincho B1&quot;">
-            <p class="mb-2 text-[12px] font-normal text-[oklch(0.55_0.01_90)]">
-              2026/07/28 ・ くらし
-            </p>
-            <h1 class="mb-4 text-[26px] leading-[1.4] font-bold">
-              はじめての多頭飼い、ねこ同士を仲良くさせる5つのコツ
-            </h1>
-            <p class="mb-8 text-[15px] leading-[1.9] font-medium text-[oklch(0.4_0.006_90)]">
-              新しい家族を迎えるのはうれしいものですが、先住猫との相性を間違えると思わぬ喧嘩やストレスにつながることも。今回は、我が家で3匹の保護猫を迎えてきた経験から、多頭飼いを成功させるためのポイントを5つにまとめました。新しい家族を迎えるのはうれしいものですが、先住猫との相性を間違えると思わぬ喧嘩やストレスにつながることも。今回は、我が家で3匹の保護猫を迎えてきた経験から、多頭飼いを成功させるためのポイントを5つにまとめました。新しい家族を迎えるのはうれしいものですが、先住猫との相性を間違えると思わぬ喧嘩やストレスにつながることも。今回は、我が家で3匹の保護猫を迎えてきた経験から、多頭飼いを成功させるためのポイントを5つにまとめました。新しい家族を迎えるのはうれしいものですが、先住猫との相性を間違えると思わぬ喧嘩やストレスにつながることも。今回は、我が家で3匹の保護猫を迎えてきた経験から、多頭飼いを成功させるためのポイントを5つにまとめました。新しい家族を迎えるのはうれしいものですが、先住猫との相性を間違えると思わぬ喧嘩やストレスにつながることも。今回は、我が家で3匹の保護猫を迎えてきた経験から、多頭飼いを成功させるためのポイントを5つにまとめました。新しい家族を迎えるのはうれしいものですが、先住猫との相性を間違えると思わぬ喧嘩やストレスにつながることも。今回は、我が家で3匹の保護猫を迎えてきた経験から、多頭飼いを成功させるためのポイントを5つにまとめました。
-            </p>
-
-            <section class="mb-8">
-              <h2 class="mb-2 text-[18px] font-bold">① 第一印象が肝心。対面はとにかくゆっくりと</h2>
-              <p class="text-[14px] leading-[1.9] font-normal text-[oklch(0.4_0.006_90)]">
-                新しい猫を迎えたその日にいきなりご対面させるのはNGです。まずは別の部屋に隔離し、数日〜1週間ほどかけてお互いの存在を鳴き声や気配だけで感じさせてあげましょう。焦って距離を詰めると、先住猫が強いストレスを感じてしまい、その後の関係づくりがかえって難しくなることがあります。新しい猫を迎えたその日にいきなりご対面させるのはNGです。まずは別の部屋に隔離し、数日〜1週間ほどかけてお互いの存在を鳴き声や気配だけで感じさせてあげましょう。焦って距離を詰めると、先住猫が強いストレスを感じてしまい、その後の関係づくりがかえって難しくなることがあります。新しい猫を迎えたその日にいきなりご対面させるのはNGです。まずは別の部屋に隔離し、数日〜1週間ほどかけてお互いの存在を鳴き声や気配だけで感じさせてあげましょう。焦って距離を詰めると、先住猫が強いストレスを感じてしまい、その後の関係づくりがかえって難しくなることがあります。
-              </p>
-            </section>
-
-            <section class="mb-8">
-              <h2 class="mb-2 text-[18px] font-bold">
-                ② においを共有して、家族の一員だと覚えてもらう
-              </h2>
-              <p class="text-[14px] leading-[1.9] font-normal text-[oklch(0.4_0.006_90)]">
-                同じタオルやブランケットを2匹で交互に使い、においを交換するのも効果的です。猫はにおいで安心・警戒を判断するため、直接顔を合わせる前に「なんだか嗅ぎ慣れたにおいがする」状態を作っておくと、対面時の警戒心をぐっと下げられます。同じタオルやブランケットを2匹で交互に使い、においを交換するのも効果的です。猫はにおいで安心・警戒を判断するため、直接顔を合わせる前に「なんだか嗅ぎ慣れたにおいがする」状態を作っておくと、対面時の警戒心をぐっと下げられます。同じタオルやブランケットを2匹で交互に使い、においを交換するのも効果的です。猫はにおいで安心・警戒を判断するため、直接顔を合わせる前に「なんだか嗅ぎ慣れたにおいがする」状態を作っておくと、対面時の警戒心をぐっと下げられます。
-              </p>
-            </section>
-
-            <section class="mb-8">
-              <h2 class="mb-2 text-[18px] font-bold">③ それぞれの安全地帯を必ず確保する</h2>
-              <p class="text-[14px] leading-[1.9] font-normal text-[oklch(0.4_0.006_90)]">
-                高い場所や隠れられる箱など、他の猫から見えない・追われても逃げ込める場所をそれぞれに用意してあげてください。逃げ場のない環境で対面させると、引くに引けず喧嘩に発展しやすくなります。特に先住猫にとっての「聖域」は絶対に奪わないようにしましょう。高い場所や隠れられる箱など、他の猫から見えない・追われても逃げ込める場所をそれぞれに用意してあげてください。逃げ場のない環境で対面させると、引くに引けず喧嘩に発展しやすくなります。特に先住猫にとっての「聖域」は絶対に奪わないようにしましょう。高い場所や隠れられる箱など、他の猫から見えない・追われても逃げ込める場所をそれぞれに用意してあげてください。逃げ場のない環境で対面させると、引くに引けず喧嘩に発展しやすくなります。特に先住猫にとっての「聖域」は絶対に奪わないようにしましょう。
-              </p>
-            </section>
-
-            <section class="mb-8">
-              <h2 class="mb-2 text-[18px] font-bold">④ ごはんの時間と場所は別々にする</h2>
-              <p class="text-[14px] leading-[1.9] font-normal text-[oklch(0.4_0.006_90)]">
-                食事は縄張り意識が最も強く出るタイミングです。同じ器・同じ場所で同時に食べさせると、新入り猫が萎縮したり、逆に先住猫がフードガーディング（威嚇して食事を守る行動）を始めたりすることがあります。しばらくは部屋を分けて給餌するのが無難です。食事は縄張り意識が最も強く出るタイミングです。同じ器・同じ場所で同時に食べさせると、新入り猫が萎縮したり、逆に先住猫がフードガーディング（威嚇して食事を守る行動）を始めたりすることがあります。しばらくは部屋を分けて給餌するのが無難です。食事は縄張り意識が最も強く出るタイミングです。同じ器・同じ場所で同時に食べさせると、新入り猫が萎縮したり、逆に先住猫がフードガーディング（威嚇して食事を守る行動）を始めたりすることがあります。しばらくは部屋を分けて給餌するのが無難です。
-              </p>
-            </section>
-
-            <section class="mb-8">
-              <h2 class="mb-2 text-[18px] font-bold">
-                ⑤ 焦らない。関係づくりには数ヶ月かかることもある
-              </h2>
-              <p class="text-[14px] leading-[1.9] font-normal text-[oklch(0.4_0.006_90)]">
-                多頭飼いがうまくいくかどうかは、数日ではなく数週間〜数ヶ月単位で見てあげる必要があります。毛を逆立てたり威嚇したりする様子が見られても、それだけで「相性が悪い」と判断せず、根気強く距離を縮めるステップを繰り返してあげましょう。多頭飼いがうまくいくかどうかは、数日ではなく数週間〜数ヶ月単位で見てあげる必要があります。毛を逆立てたり威嚇したりする様子が見られても、それだけで「相性が悪い」と判断せず、根気強く距離を縮めるステップを繰り返してあげましょう。多頭飼いがうまくいくかどうかは、数日ではなく数週間〜数ヶ月単位で見てあげる必要があります。毛を逆立てたり威嚇したりする様子が見られても、それだけで「相性が悪い」と判断せず、根気強く距離を縮めるステップを繰り返してあげましょう。
-              </p>
-            </section>
-
+          <div class="border-b border-[oklch(0.88_0.005_90)] pb-6">
             <div
-              class="rounded-[6px] border border-[oklch(0.9_0.004_90)] bg-[oklch(0.97_0.003_90)] p-5"
+              class="inline-flex overflow-hidden rounded-[5px] border border-[oklch(0.85_0.005_90)] bg-white"
             >
-              <p class="mb-3 text-[12px] font-semibold text-[oklch(0.5_0.008_90)]">
-                使用フォント Shippori Mincho B1 ウェイト見本
-              </p>
-              <div class="flex flex-col gap-1.5">
-                <p class="text-[15px] font-normal">Regular 400　ねこがすきです</p>
-                <p class="text-[15px] font-medium">Medium 500　ねこがすきです</p>
-                <p class="text-[15px] font-bold">Bold 700　ねこがすきです</p>
-              </div>
+              <a
+                href="/experiments/lcp-02/bad/"
+                class="inline-flex items-center gap-[7px] px-[18px] py-[9px] font-mono text-[12px] font-bold tracking-[0.04em]"
+                style="color: oklch(0.6 0.01 90); background-color: transparent"
+              >
+                <span
+                  class="inline-block h-[7px] w-[7px] rounded-full"
+                  style="background-color: oklch(0.85 0.005 90)"
+                ></span
+                >BAD 実装
+              </a>
+              <a
+                href="/experiments/lcp-02/good/"
+                class="inline-flex items-center gap-[7px] border-l border-[oklch(0.85_0.005_90)] px-[18px] py-[9px] font-mono text-[12px] font-bold tracking-[0.04em]"
+                style="color: oklch(0.38 0.13 148); background-color: oklch(0.95 0.03 148)"
+              >
+                <span
+                  class="inline-block h-[7px] w-[7px] rounded-full"
+                  style="background-color: oklch(0.55 0.15 148)"
+                ></span
+                >GOOD 実装
+              </a>
             </div>
-          </article>
-        </div>
-      </main>
+          </div>
+        </header>
 
-      <footer class="mt-16 border-t border-[oklch(0.88_0.005_90)] pt-6">
-        <p class="text-[13px]" style="line-height: 1.8; color: oklch(0.55 0.01 90)">
-          個人運営の技術実験サイトです。掲載内容は再現性を優先し、継続的に追試・更新します。
-        </p>
-      </footer>
+        <main class="flex-1">
+          <details class="group mb-8 rounded-[6px] border border-[oklch(0.88_0.005_90)]">
+            <summary
+              class="flex cursor-pointer list-none items-center gap-2 px-4 py-3 text-[13px] font-semibold tracking-[0.01em] select-none [&::-webkit-details-marker]:hidden"
+            >
+              <span
+                class="inline-block text-[10px] text-[oklch(0.55_0.01_90)] transition-transform duration-150 group-open:rotate-90"
+                >▶</span
+              >
+              実験の説明
+            </summary>
+            <div class="px-4 pb-4">
+              <p class="mb-2 text-sm" style="line-height: 1.6; color: oklch(0.5 0.008 90)">
+                ページにWebフォントを使った、ブログ記事ページのgood実装パターンです。
+              </p>
+              <p class="mb-2 text-sm" style="line-height: 1.6; color: oklch(0.5 0.008 90)">
+                badパターンと比較して、フォント取得中も記事タイトルや本文がフォールバックフォントで即座に表示され、LCP候補要素の描画開始が遅れなくなっていることがわかります。
+              </p>
+              <p class="mb-2 text-sm" style="line-height: 1.6; color: oklch(0.5 0.008 90)">
+                具体的には次の3点を変更しています。
+              </p>
+              <ul class="mb-2 list-disc pl-5 text-sm text-[oklch(0.5_0.008_90)]">
+                <li>
+                  fonts.googleapis.com / fonts.gstatic.comへpreconnectを張り、接続確立を先出しする
+                </li>
+                <li>
+                  記事本文で実際に使用する400・500・700の3ウェイトのみ読み込む（bad実装は本文で使っていない600・800も含めて5ウェイト一括読み込みしていた）
+                </li>
+                <li>
+                  font-display=swapを指定し、フォント取得中もフォールバックフォントでテキストを即座に表示し、取得完了後に差し替える
+                </li>
+              </ul>
+              <p class="text-sm" style="line-height: 1.6; color: oklch(0.5 0.008 90)">
+                ※フォント切り替え時に多少の見た目のガタつき（レイアウトシフト）は発生し得ますが、テキストが読めない時間をなくすことを優先しています。
+              </p>
+            </div>
+          </details>
+
+          <div class="overflow-hidden rounded-[8px] border border-[oklch(0.88_0.005_90)] bg-white">
+            <header
+              class="flex items-center justify-between border-b border-[oklch(0.88_0.005_90)] px-6 py-4"
+            >
+              <span class="text-[15px] font-bold">🐾 ねこ日和</span>
+              <nav class="flex gap-4 text-[12px] text-[oklch(0.55_0.01_90)]">
+                <span>くらし</span>
+                <span>健康</span>
+                <span>グッズ</span>
+              </nav>
+            </header>
+
+            <article class="px-8 py-10" style="font-family: &quot;Shippori Mincho B1&quot;">
+              <p class="mb-2 text-[12px] font-normal text-[oklch(0.55_0.01_90)]">
+                2026/07/28 ・ くらし
+              </p>
+              <h1 class="mb-4 text-[26px] leading-[1.4] font-bold">
+                はじめての多頭飼い、ねこ同士を仲良くさせる5つのコツ
+              </h1>
+              <p class="mb-8 text-[15px] leading-[1.9] font-medium text-[oklch(0.4_0.006_90)]">
+                新しい家族を迎えるのはうれしいものですが、先住猫との相性を間違えると思わぬ喧嘩やストレスにつながることも。今回は、我が家で3匹の保護猫を迎えてきた経験から、多頭飼いを成功させるためのポイントを5つにまとめました。新しい家族を迎えるのはうれしいものですが、先住猫との相性を間違えると思わぬ喧嘩やストレスにつながることも。今回は、我が家で3匹の保護猫を迎えてきた経験から、多頭飼いを成功させるためのポイントを5つにまとめました。新しい家族を迎えるのはうれしいものですが、先住猫との相性を間違えると思わぬ喧嘩やストレスにつながることも。今回は、我が家で3匹の保護猫を迎えてきた経験から、多頭飼いを成功させるためのポイントを5つにまとめました。新しい家族を迎えるのはうれしいものですが、先住猫との相性を間違えると思わぬ喧嘩やストレスにつながることも。今回は、我が家で3匹の保護猫を迎えてきた経験から、多頭飼いを成功させるためのポイントを5つにまとめました。新しい家族を迎えるのはうれしいものですが、先住猫との相性を間違えると思わぬ喧嘩やストレスにつながることも。今回は、我が家で3匹の保護猫を迎えてきた経験から、多頭飼いを成功させるためのポイントを5つにまとめました。新しい家族を迎えるのはうれしいものですが、先住猫との相性を間違えると思わぬ喧嘩やストレスにつながることも。今回は、我が家で3匹の保護猫を迎えてきた経験から、多頭飼いを成功させるためのポイントを5つにまとめました。
+              </p>
+
+              <section class="mb-8">
+                <h2 class="mb-2 text-[18px] font-bold">
+                  ① 第一印象が肝心。対面はとにかくゆっくりと
+                </h2>
+                <p class="text-[14px] leading-[1.9] font-normal text-[oklch(0.4_0.006_90)]">
+                  新しい猫を迎えたその日にいきなりご対面させるのはNGです。まずは別の部屋に隔離し、数日〜1週間ほどかけてお互いの存在を鳴き声や気配だけで感じさせてあげましょう。焦って距離を詰めると、先住猫が強いストレスを感じてしまい、その後の関係づくりがかえって難しくなることがあります。新しい猫を迎えたその日にいきなりご対面させるのはNGです。まずは別の部屋に隔離し、数日〜1週間ほどかけてお互いの存在を鳴き声や気配だけで感じさせてあげましょう。焦って距離を詰めると、先住猫が強いストレスを感じてしまい、その後の関係づくりがかえって難しくなることがあります。新しい猫を迎えたその日にいきなりご対面させるのはNGです。まずは別の部屋に隔離し、数日〜1週間ほどかけてお互いの存在を鳴き声や気配だけで感じさせてあげましょう。焦って距離を詰めると、先住猫が強いストレスを感じてしまい、その後の関係づくりがかえって難しくなることがあります。
+                </p>
+              </section>
+
+              <section class="mb-8">
+                <h2 class="mb-2 text-[18px] font-bold">
+                  ② においを共有して、家族の一員だと覚えてもらう
+                </h2>
+                <p class="text-[14px] leading-[1.9] font-normal text-[oklch(0.4_0.006_90)]">
+                  同じタオルやブランケットを2匹で交互に使い、においを交換するのも効果的です。猫はにおいで安心・警戒を判断するため、直接顔を合わせる前に「なんだか嗅ぎ慣れたにおいがする」状態を作っておくと、対面時の警戒心をぐっと下げられます。同じタオルやブランケットを2匹で交互に使い、においを交換するのも効果的です。猫はにおいで安心・警戒を判断するため、直接顔を合わせる前に「なんだか嗅ぎ慣れたにおいがする」状態を作っておくと、対面時の警戒心をぐっと下げられます。同じタオルやブランケットを2匹で交互に使い、においを交換するのも効果的です。猫はにおいで安心・警戒を判断するため、直接顔を合わせる前に「なんだか嗅ぎ慣れたにおいがする」状態を作っておくと、対面時の警戒心をぐっと下げられます。
+                </p>
+              </section>
+
+              <section class="mb-8">
+                <h2 class="mb-2 text-[18px] font-bold">③ それぞれの安全地帯を必ず確保する</h2>
+                <p class="text-[14px] leading-[1.9] font-normal text-[oklch(0.4_0.006_90)]">
+                  高い場所や隠れられる箱など、他の猫から見えない・追われても逃げ込める場所をそれぞれに用意してあげてください。逃げ場のない環境で対面させると、引くに引けず喧嘩に発展しやすくなります。特に先住猫にとっての「聖域」は絶対に奪わないようにしましょう。高い場所や隠れられる箱など、他の猫から見えない・追われても逃げ込める場所をそれぞれに用意してあげてください。逃げ場のない環境で対面させると、引くに引けず喧嘩に発展しやすくなります。特に先住猫にとっての「聖域」は絶対に奪わないようにしましょう。高い場所や隠れられる箱など、他の猫から見えない・追われても逃げ込める場所をそれぞれに用意してあげてください。逃げ場のない環境で対面させると、引くに引けず喧嘩に発展しやすくなります。特に先住猫にとっての「聖域」は絶対に奪わないようにしましょう。
+                </p>
+              </section>
+
+              <section class="mb-8">
+                <h2 class="mb-2 text-[18px] font-bold">④ ごはんの時間と場所は別々にする</h2>
+                <p class="text-[14px] leading-[1.9] font-normal text-[oklch(0.4_0.006_90)]">
+                  食事は縄張り意識が最も強く出るタイミングです。同じ器・同じ場所で同時に食べさせると、新入り猫が萎縮したり、逆に先住猫がフードガーディング（威嚇して食事を守る行動）を始めたりすることがあります。しばらくは部屋を分けて給餌するのが無難です。食事は縄張り意識が最も強く出るタイミングです。同じ器・同じ場所で同時に食べさせると、新入り猫が萎縮したり、逆に先住猫がフードガーディング（威嚇して食事を守る行動）を始めたりすることがあります。しばらくは部屋を分けて給餌するのが無難です。食事は縄張り意識が最も強く出るタイミングです。同じ器・同じ場所で同時に食べさせると、新入り猫が萎縮したり、逆に先住猫がフードガーディング（威嚇して食事を守る行動）を始めたりすることがあります。しばらくは部屋を分けて給餌するのが無難です。
+                </p>
+              </section>
+
+              <section class="mb-8">
+                <h2 class="mb-2 text-[18px] font-bold">
+                  ⑤ 焦らない。関係づくりには数ヶ月かかることもある
+                </h2>
+                <p class="text-[14px] leading-[1.9] font-normal text-[oklch(0.4_0.006_90)]">
+                  多頭飼いがうまくいくかどうかは、数日ではなく数週間〜数ヶ月単位で見てあげる必要があります。毛を逆立てたり威嚇したりする様子が見られても、それだけで「相性が悪い」と判断せず、根気強く距離を縮めるステップを繰り返してあげましょう。多頭飼いがうまくいくかどうかは、数日ではなく数週間〜数ヶ月単位で見てあげる必要があります。毛を逆立てたり威嚇したりする様子が見られても、それだけで「相性が悪い」と判断せず、根気強く距離を縮めるステップを繰り返してあげましょう。多頭飼いがうまくいくかどうかは、数日ではなく数週間〜数ヶ月単位で見てあげる必要があります。毛を逆立てたり威嚇したりする様子が見られても、それだけで「相性が悪い」と判断せず、根気強く距離を縮めるステップを繰り返してあげましょう。
+                </p>
+              </section>
+
+              <div
+                class="rounded-[6px] border border-[oklch(0.9_0.004_90)] bg-[oklch(0.97_0.003_90)] p-5"
+              >
+                <p class="mb-3 text-[12px] font-semibold text-[oklch(0.5_0.008_90)]">
+                  使用フォント Shippori Mincho B1 ウェイト見本
+                </p>
+                <div class="flex flex-col gap-1.5">
+                  <p class="text-[15px] font-normal">Regular 400　ねこがすきです</p>
+                  <p class="text-[15px] font-medium">Medium 500　ねこがすきです</p>
+                  <p class="text-[15px] font-bold">Bold 700　ねこがすきです</p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </main>
+
+        <footer class="mt-16 border-t border-[oklch(0.88_0.005_90)] pt-6">
+          <p class="text-[13px]" style="line-height: 1.8; color: oklch(0.55 0.01 90)">
+            個人運営の技術実験サイトです。掲載内容は再現性を優先し、継続的に追試・更新します。
+          </p>
+        </footer>
+      </div>
     </div>
   </body>
 </html>
