@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Accordion } from "../../../components/Accordion";
 import { MonoLabel } from "../../../components/typography/MonoLabel";
 import { ExperimentLayout } from "../../ExperimentLayout";
-import { type RecordRow, type SortKey, useRecordSearch } from "../useRecordSearch";
+import { parseZipEntries, type RecordRow, type SortKey, useRecordSearch } from "../useRecordSearch";
 import { Text } from "../../../components/typography/Text";
 import inpImageUrl from "./inp.png?url";
 
@@ -16,10 +16,10 @@ type ZipCodeJson = {
 const DATA_URL = "/data/japanpost/utf_ken_all.json";
 const SEARCH_DEBOUNCE_MS = 300;
 
-const COLUMNS: { key: SortKey; label: string }[] = [
-  { key: "zipCode", label: "郵便番号" },
-  { key: "pref", label: "都道府県" },
-  { key: "city", label: "市区町村" },
+const COLUMNS: { key: SortKey; label: string; width?: number }[] = [
+  { key: "zipCode", label: "郵便番号", width: 120 },
+  { key: "pref", label: "都道府県", width: 110 },
+  { key: "city", label: "市区町村・町域" },
 ];
 
 export function BadPage() {
@@ -29,8 +29,7 @@ export function BadPage() {
     fetch(DATA_URL)
       .then((res) => res.json())
       .then((data: ZipCodeJson) => {
-        const rows = data.entries.map(([zipCode, pref, city], id) => ({ id, zipCode, pref, city }));
-        setRecords(rows);
+        setRecords(parseZipEntries(data.entries));
       });
   }, []);
 
@@ -95,7 +94,12 @@ export function BadPage() {
       </div>
 
       <div className="max-h-[560px] overflow-auto rounded-[6px] border border-[oklch(0.88_0.005_90)]">
-        <table className="w-full border-collapse text-sm">
+        <table className="w-full table-fixed border-collapse text-sm">
+          <colgroup>
+            {COLUMNS.map((col) => (
+              <col key={col.key} style={col.width ? { width: col.width } : undefined} />
+            ))}
+          </colgroup>
           <thead className="sticky top-0 bg-[oklch(0.97_0.003_90)]">
             <tr>
               {COLUMNS.map((col) => (
@@ -113,9 +117,9 @@ export function BadPage() {
           <tbody>
             {visibleRecords.map((r) => (
               <tr key={r.id} className="border-b border-[oklch(0.93_0.003_90)]">
-                <td className="px-3 py-1.5 font-mono text-[13px]">{r.zipCode}</td>
-                <td className="px-3 py-1.5 text-[13px]">{r.pref}</td>
-                <td className="px-3 py-1.5 text-[13px]">{r.city}</td>
+                <td className="truncate px-3 py-1.5 font-mono text-[13px]">{r.zipCode}</td>
+                <td className="truncate px-3 py-1.5 text-[13px]">{r.pref}</td>
+                <td className="truncate px-3 py-1.5 text-[13px]">{r.city}</td>
               </tr>
             ))}
           </tbody>
